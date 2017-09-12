@@ -27,10 +27,8 @@ namespace :generate do
 			f.write(<<-EOF.strip_heredoc)
 				# Requiring test environment file
 				require 'spec_helper'
-
 				# Requiring test subject file. Uncomment below.
 				# require_relative File.join(APP_CONTROLLER, "static")
-
 				# Test cases
 				describe '#{name}' do
 					pending "pending test cases"
@@ -63,7 +61,7 @@ namespace :generate do
 		puts "Creating #{model_path}"
 		File.open(model_path, 'w+') do |f|
 			f.write(<<-EOF.strip_heredoc)
-				class #{model_name} < ActiveRecord::Base[5.0]
+				class #{model_name} < ActiveRecord::Base
 					# This is Sinatra! Remember to create a migration!
 				end
 			EOF
@@ -132,19 +130,13 @@ end
 
 desc 'Initiate IRB console with environment loaded'
 task "console" do
-	exec "irb -r ./config/environments/init"
+	exec "irb -r./config/environments/init"
 end
 
 
-desc 'Initiate shotgun in localhost'
+desc 'Initiate IRB console with environment loaded'
 task "server" do
 	exec "shotgun config.ru"
-end
-
-
-desc 'Initiate shotgun server in cloud9 environment'
-task "c9-server" do
-	exec "shotgun --host $IP --port $PORT config.ru"
 end
 
 
@@ -161,44 +153,31 @@ Server
 -----------------
 # launch the server
 	$ rake server
-# launch the server on Cloud-9
-	$ rake c9-server
-
 Test and Debug
 -----------------
 # initiate irb console for this web server
 	$ rake console
-
 # performs all unit tests in spec folder.
 	$ rake test
-
 # spec - to create unit test 'spec/<filename>_spec.rb' file
 	$ rake generate:spec NAME=<filename>
-
 MVC
 -----------------
 # to create a model file
 	$ rake generate:model NAME=<singular_model_name>
-
-
 Database
 -----------------
 # to create the database
 	$ rake db:create
-
 # to create migration file 'db/migrate/<timestamp>_<filename>.rb'
 	$ rake generate:migration NAME=<filename>
 # REMINDER: be careful with ActiveRecord naming convention!
-
 # to perform migration
 	$ rake db:migrate
-
 # to drop database
 	$ rake db:drop
-
 # to seed data into database
 	$ rake db:seed
-
 # to view current migration version
 	$ rake db:version
 "

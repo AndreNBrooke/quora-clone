@@ -1,0 +1,25 @@
+<div class="container page-width">
+	<div>
+		<p><<a href="/questions/new">Submit your Question</a></p>
+	</div>
+	<% will_paginate @list %>
+	<div>
+		<ul class="list-group">
+			<% @list.each do |question|%>
+			<li class="list-group-item">
+				<span class="emphasize"><a href="/questions/<%= question.id %>"><%= question.title %></a></span>
+				<br>
+				<% answer = question.answers.sample %>
+				<span class="small more">
+				<% if answer == nil %>
+					<p style="color: red;">No answers yet</p>
+				<% else %>
+					<p class="norm">Answered by: <%= answer.user.username %></p>
+					<%= simple_format(answer.description) %>
+				<% end %>
+				</span>
+			</li>
+			<% end %>
+		</ul>	
+	</div> 
+</div>

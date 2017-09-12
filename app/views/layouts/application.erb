@@ -1,8 +1,61 @@
 <html>
+<html lang="en">
 	<head>
-		<title>Sinatra Framework</title>
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+		<title>Quora!</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-wideth, initial-scales=1">
+
 	</head>
 	<body>
+	<nav class="nav bar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Quora!</a>
+			</div>
+			<div id="header-navbar">
+			<% if logged_in? %>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aira-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"><%= current_user.email%><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+							<li role="seperator" class="divider"></li>
+							<li><a href="#" id="logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>	
+			<% else %>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/users/new"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Signup</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
+					<ul class="dropdown-menu">
+						<li class="login-form">
+							<form action="/session" method="post">
+								<p> Please sign in</p>
+								<input type="email" placeholder="Email address" required autofocus name="user[email]">
+								<br><br>
+								<input type="password" placeholder="Password" required name="user[password]">
+								<br><br>
+								<button class="btn btn-lg btn primary btn-block" type="submit">Sign in</button>
+							</form>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<% end %>
+		</div>
+	</div>
+	</nav>
+			
 		<%= yield %>
 	</body>
 </html>

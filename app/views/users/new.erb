@@ -1,7 +1,22 @@
-<h1>Create an Account!</h1>
+<link rel="stylesheet" href="/css/loginform.css">
 
-<form method='post' action="/signup">
-	<input type='text' placeholder="Email" name="user[email]"><br>
-	<input type='password' placeholder="Password" name="user[password]"><br>
-	<input type='submit' value ="Sign up">
-</form>
+<div class="container text">
+	<h4 class="form-signin-heading"> Please fill in your details to create your account </h4>
+	<br>
+	<form class="form-signin" action="/users" method="post">
+		<label for="inputEmail" class="sr-only">Full Name</label>
+		<input type="text" id="inputEmail" class="form-control" placeholder="Full name" required autofocus name="user[full_name]">
+		<br>
+		<label for="inputEmail" class="sr-only">Email</label>
+		<input type="text" id="inputEmail" class="form-control" placeholder="Email Address" required autofocus name="user[email]">
+		<br>
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" class="form-control" placeholder="Desired Password" required name="user[password]">
+		<br>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up!</button>
+	</form>
+			<br>
+<% if @error != nil %>
+	<h2>Errors: <%= @error %></h2>
+<% end %>
+</div>

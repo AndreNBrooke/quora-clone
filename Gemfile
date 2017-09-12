@@ -25,6 +25,9 @@ gem 'rake'
 # Adding rspec for running unit testing
 gem 'rspec'
 
+# Paginate
+gem 'will_paginate', '~> 3.0.6'
+
 #Bcrypt for has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
